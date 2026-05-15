@@ -1,0 +1,590 @@
+# KD Captain — Electric Scooty Rental Website
+
+## index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KD Captain - Electric Scooty Rental</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f7f9fc;
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --primary-blue: #0046a8;
+      --primary-orange: #ff8c00;
+      --light-orange: #ffb347;
+      --dark-text: #1c1c1c;
+      --white: #ffffff;
+    }
+
+    header {
+      width: 100%;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: var(--primary-blue);
+      font-size: 1.5rem;
+    }
+
+    .logo img {
+      width: 60px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--dark-text);
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: var(--primary-orange);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 8% 60px;
+      background: linear-gradient(135deg, #fff7ec, #eef5ff);
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 320px;
+    }
+
+    .hero-text h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+      color: var(--primary-blue);
+      margin-bottom: 20px;
+    }
+
+    .hero-text span {
+      color: var(--primary-orange);
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      color: #444;
+      max-width: 600px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--primary-orange);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255,140,0,0.3);
+    }
+
+    .btn-secondary {
+      border: 2px solid var(--primary-blue);
+      color: var(--primary-blue);
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary-blue);
+      color: white;
+    }
+
+    .hero-image {
+      flex: 1;
+      text-align: center;
+      min-width: 300px;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 520px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
+    }
+
+    section {
+      padding: 90px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 2.7rem;
+      color: var(--primary-blue);
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #666;
+      font-size: 1rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 35px 25px;
+      border-radius: 20px;
+      text-align: center;
+      transition: 0.4s;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    .feature-card h3 {
+      color: var(--primary-orange);
+      margin-bottom: 10px;
+    }
+
+    .pricing-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .price-card {
+      background: white;
+      padding: 35px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transition: 0.4s;
+      border-top: 5px solid var(--primary-orange);
+    }
+
+    .price-card:hover {
+      transform: scale(1.04);
+    }
+
+    .price-card h3 {
+      color: var(--primary-blue);
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 3rem;
+      color: var(--primary-orange);
+      font-weight: 700;
+      margin: 20px 0;
+    }
+
+    .price-card ul {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .price-card ul li {
+      margin: 10px 0;
+      color: #555;
+    }
+
+    .service-area {
+      background: linear-gradient(135deg, var(--primary-blue), #002b68);
+      color: white;
+      border-radius: 30px;
+      text-align: center;
+      padding: 70px 30px;
+    }
+
+    .service-area h2 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
+
+    .service-locations {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .location-pill {
+      background: rgba(255,255,255,0.15);
+      padding: 12px 22px;
+      border-radius: 50px;
+      backdrop-filter: blur(8px);
+    }
+
+    .app-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .app-text {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .app-text h2 {
+      color: var(--primary-blue);
+      font-size: 2.7rem;
+      margin-bottom: 20px;
+    }
+
+    .app-image {
+      flex: 1;
+      text-align: center;
+    }
+
+    .app-image img {
+      max-width: 350px;
+      width: 100%;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, var(--primary-orange), #ff6600);
+      color: white;
+      text-align: center;
+      border-radius: 25px;
+      padding: 70px 20px;
+    }
+
+    .cta h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 60px;
+    }
+
+    footer p {
+      margin: 8px 0;
+      color: #ccc;
+    }
+
+    .powered {
+      color: var(--light-orange);
+      font-weight: 600;
+    }
+
+    .mobile-menu {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    @media(max-width: 900px) {
+      .hero-text h1 {
+        font-size: 2.8rem;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        right: 20px;
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">
+      <img src="KDcaptainLogo.jpeg" alt="KD Captain Logo">
+      KD Captain
+    </div>
+
+    <ul id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#service">Service Area</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="mobile-menu" onclick="toggleMenu()">☰</div>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-text">
+    <h1>Ride Smart With <span>Electric Scooty Rentals</span></h1>
+
+    <p>
+      KD Captain offers affordable and eco-friendly electric scooty rentals across South Kolkata.
+      App-enabled booking, instant rides, low pricing, and hassle-free commuting.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#pricing" class="btn btn-primary">View Pricing</a>
+      <a href="#contact" class="btn btn-secondary">Book Now</a>
+    </div>
+  </div>
+
+  <div class="hero-image">
+    <img src="KDcaptainLogo.jpeg" alt="KD Captain">
+  </div>
+</section>
+
+<section id="features">
+  <div class="section-title">
+    <h2>Why Choose KD Captain?</h2>
+    <p>Fast, affordable, and fully app-enabled electric mobility</p>
+  </div>
+
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Electric Rides</h3>
+      <p>Eco-friendly scooties with smooth and silent riding experience.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">📱</div>
+      <h3>App Booking</h3>
+      <p>Book your scooty instantly through our mobile-enabled platform.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">💰</div>
+      <h3>Cheap Rates</h3>
+      <p>Lowest pricing in South Kolkata with flexible rental plans.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🛵</div>
+      <h3>Quick Availability</h3>
+      <p>Easy pickup and quick ride access whenever you need.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="section-title">
+    <h2>Affordable Rental Plans</h2>
+    <p>Designed for students, office commuters, and daily travelers</p>
+  </div>
+
+  <div class="pricing-container">
+
+    <div class="price-card">
+      <h3>Hourly Ride</h3>
+      <div class="price">₹49</div>
+      <ul>
+        <li>1 Hour Usage</li>
+        <li>Battery Included</li>
+        <li>Instant Booking</li>
+      </ul>
+      <a href="#contact" class="btn btn-primary">Book Now</a>
+    </div>
+
+    <div class="price-card">
+      <h3>Daily Rental</h3>
+      <div class="price">₹299</div>
+      <ul>
+        <li>Full Day Access</li>
+        <li>Unlimited KM*</li>
+        <li>Support Included</li>
+      </ul>
+      <a href="#contact" class="btn btn-primary">Book Now</a>
+    </div>
+
+    <div class="price-card">
+      <h3>Weekly Plan</h3>
+      <div class="price">₹1499</div>
+      <ul>
+        <li>Best Value Plan</li>
+        <li>Priority Booking</li>
+        <li>Free Maintenance</li>
+      </ul>
+      <a href="#contact" class="btn btn-primary">Book Now</a>
+    </div>
+
+  </div>
+</section>
+
+<section id="service">
+  <div class="service-area">
+    <h2>Service Available Only In South Kolkata</h2>
+    <p>Focused operations for fast support and quick booking experience</p>
+
+    <div class="service-locations">
+      <div class="location-pill">Garia</div>
+      <div class="location-pill">Tollygunge</div>
+      <div class="location-pill">Jadavpur</div>
+      <div class="location-pill">Behala</div>
+      <div class="location-pill">Kasba</div>
+      <div class="location-pill">Rashbehari</div>
+      <div class="location-pill">Kalighat</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="app-section">
+
+    <div class="app-text">
+      <h2>Book Your Ride From Your Phone</h2>
+
+      <p>
+        Our smart booking platform allows users to reserve electric scooties instantly.
+        Quick login, easy payments, and live ride availability.
+      </p>
+
+      <br>
+
+      <a href="#contact" class="btn btn-primary">Download App Soon</a>
+    </div>
+
+    <div class="app-image">
+      <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=800&auto=format&fit=crop" alt="Mobile App">
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="cta">
+    <h2>Ready To Ride?</h2>
+    <p>Book your electric scooty today and explore South Kolkata smarter.</p>
+
+    <br><br>
+
+    <a href="https://wa.me/919999999999" class="btn btn-secondary" style="background:white;color:#ff6600;border:none;">
+      Contact On WhatsApp
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 KD Captain. All Rights Reserved.</p>
+  <p>Electric Scooty Rental Service | South Kolkata</p>
+  <p class="powered">Powered by omgananayaka.in</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+  }
+
+  window.addEventListener('scroll', () => {
+    const cards = document.querySelectorAll('.feature-card, .price-card');
+
+    cards.forEach(card => {
+      const cardTop = card.getBoundingClientRect().top;
+
+      if(cardTop < window.innerHeight - 100) {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0px)';
+      }
+    });
+  });
+
+  document.querySelectorAll('.feature-card, .price-card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(40px)';
+    card.style.transition = 'all 0.7s ease';
+  });
+</script>
+
+</body>
+</html>

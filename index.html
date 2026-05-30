@@ -494,9 +494,7 @@
     </div>
   </div>
 
-  <div class="hero-image">
-    <img src="transporter_image.jpeg" alt="KD Captain">
-  </div>
+  <div class="hero-image"> <img id="heroImage" src="transporter_image.jpeg" alt="KD Captain"> </div>
 </section>
 
 <div class="safety-banner">
@@ -717,6 +715,29 @@
     card.style.transform = 'translateY(40px)';
     card.style.transition = 'all 0.7s ease';
   });
+
+</script>
+
+<script>
+console.log("Script loaded");
+
+window.addEventListener("load", () => {
+  console.log("say hi");
+
+  const heroImages = [
+    "transporter_image.jpeg",
+    "lady_image.jpeg",
+    "lady2.jpeg"
+  ];
+
+  const randomIndex =
+    Math.floor(Math.random() * heroImages.length);
+
+  console.log(heroImages[randomIndex]);
+
+  document.getElementById("heroImage").src =
+    heroImages[randomIndex];
+});
 </script>
 
 </body>
